@@ -4,6 +4,8 @@ import ProductListLoader from "./loaders/ProductListLoader";
 import { Storage } from "../utils/Storage";
 import { Link } from "react-router-dom";
 import toastr from "toastr";
+import "aos/dist/aos.css";
+import AOS from "aos";
 
 interface Product {
   id: number;
@@ -38,6 +40,12 @@ const ProductList: React.FC<ProductListProps> = memo(
     const [rating, setRating] = useState<number>(0);
     const [search, setSearch] = useState<string>("");
     const [showFilter, setShowFilter] = useState<boolean>(false);
+
+    useEffect(() => {
+      AOS.init({
+        duration: 500,
+      });
+    }, []);
 
     toastr.options = {
       positionClass: "toast-top-right",
@@ -297,7 +305,7 @@ const ProductList: React.FC<ProductListProps> = memo(
             // Mapping through products when available
             filteredProducts.map((product) => (
               <div key={product.id}>
-                <div className="p-3 bg-white rounded-lg shadow-md hover:border">
+                <div className="p-3 bg-white rounded-lg shadow-md hover:border" data-aos="zoom-out-down">
                   <div className="relative">
                     {product.image_url && product.image_url.length > 0 ? (
                       <Link to={`/product-detail/${product.id}`}>
