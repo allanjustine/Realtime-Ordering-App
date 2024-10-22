@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\RegisterController;
+use App\Http\Controllers\API\Auth\SocialAuthController;
 use App\Http\Controllers\API\Carts\CartController;
 use App\Http\Controllers\API\Products\ProductController;
 use App\Http\Controllers\API\Profile\ProfileController;
@@ -11,6 +12,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
+
+// GOOGLE LOGIN
+Route::middleware(['web'])->group(function () {
+    Route::get('auth/google', [SocialAuthController::class, 'redirectToGoogle']);
+    Route::get('auth/google/callback', [SocialAuthController::class, 'handleGoogleCallback']);
+});
 
 Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/login', [LoginController::class, 'login']);

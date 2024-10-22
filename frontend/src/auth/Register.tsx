@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "../context/api";
 import { useNavigate } from "react-router-dom";
 import SuccessModal from "../modals/SuccessModal";
@@ -49,6 +49,10 @@ const Register: React.FC = () => {
     setIsModalOpen(false);
     navigate("/login");
   };
+
+  useEffect(() => {
+    document.title = "Ordering App | Register";
+  }, []);
 
   return (
     <div className="flex items-center justify-center h-screen">

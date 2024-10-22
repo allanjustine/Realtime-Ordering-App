@@ -25,7 +25,10 @@ const Home: React.FC = memo(() => {
             <p className="mb-6 text-lg">
               Delicious meals and coffee delivered to your door
             </p>
-            <Link to="/food-products" className="px-6 py-3 text-sm font-semibold text-white bg-blue-600 rounded-md hover:bg-blue-700">
+            <Link
+              to="/food-products"
+              className="px-6 py-3 text-sm font-semibold text-white bg-blue-600 rounded-md hover:bg-blue-700"
+            >
               Get Started
             </Link>
           </div>

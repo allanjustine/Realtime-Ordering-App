@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useState } from "react";
+import React, { Suspense, lazy, useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -9,6 +9,9 @@ import "./App.css";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import LoadingSpinner from "./components/LoadingSpinner";
 import ProductDetail from "./products/ProductDetail";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import SuccessLogin from "./auth/SuccessfulLogin";
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -32,6 +35,12 @@ const PublicRoute = ({ children }: { children: JSX.Element }) => {
 
 const App: React.FC = () => {
   const [onSubmit, setOnSubmit] = useState(false);
+
+  useEffect(() => {
+    AOS.init({
+      duration: 500,
+    });
+  }, []);
   return (
     <AuthProvider>
       <Router>
@@ -76,6 +85,14 @@ const App: React.FC = () => {
                 <ProtectedRoute>
                   <Cart />
                 </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/success-login/?token=:{token}"
+              element={
+                <PublicRoute>
+                  <SuccessLogin />
+                </PublicRoute>
               }
             />
             <Route

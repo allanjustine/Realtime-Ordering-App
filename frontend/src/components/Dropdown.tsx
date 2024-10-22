@@ -91,7 +91,7 @@ const Dropdown: React.FC = () => {
           <div className="absolute right-2 z-20 w-[200px] mt-2 bg-white rounded-md shadow-lg">
             <div className="absolute right-3 top-[-4px] transform rotate-45 bg-white w-2 h-2"></div>
             <ul>
-              <li className="px-4 py-2 cursor-pointer hover:bg-gray-100">
+              <li className="px-4 py-2 truncate cursor-pointer hover:bg-gray-100" title={user?.email}>
                 {user?.email}
               </li>
               <li className="px-4 py-2 cursor-pointer hover:bg-gray-100">

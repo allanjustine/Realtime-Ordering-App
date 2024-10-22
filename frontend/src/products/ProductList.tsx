@@ -4,8 +4,6 @@ import ProductListLoader from "./loaders/ProductListLoader";
 import { Storage } from "../utils/Storage";
 import { Link } from "react-router-dom";
 import toastr from "toastr";
-import "aos/dist/aos.css";
-import AOS from "aos";
 
 interface Product {
   id: number;
@@ -40,12 +38,6 @@ const ProductList: React.FC<ProductListProps> = memo(
     const [rating, setRating] = useState<number>(0);
     const [search, setSearch] = useState<string>("");
     const [showFilter, setShowFilter] = useState<boolean>(false);
-
-    useEffect(() => {
-      AOS.init({
-        duration: 500,
-      });
-    }, []);
 
     toastr.options = {
       positionClass: "toast-top-right",
