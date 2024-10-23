@@ -88,7 +88,7 @@ const App: React.FC = () => {
               }
             />
             <Route
-              path="/success-login/?token=:{token}"
+              path="/success-login/:token"
               element={
                 <PublicRoute>
                   <SuccessLogin />

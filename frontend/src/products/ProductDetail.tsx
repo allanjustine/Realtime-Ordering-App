@@ -40,7 +40,15 @@ const ProductDetail: React.FC = () => {
   }, [id]);
   if (loading) return <LoadingSpinner />;
 
-  if (!product) return <div>No product found</div>;
+  if (!product)
+    return (
+      <div className="flex flex-col items-center justify-center h-screen text-center">
+        <img className="w-24 h-24 mb-4" src="https://static.thenounproject.com/png/4532229-512.png" alt="" />
+        <div className="text-lg font-semibold text-gray-700">
+          No product found
+        </div>
+      </div>
+    );
 
   const changeImage = (src: string) => {
     setMainImage(src);

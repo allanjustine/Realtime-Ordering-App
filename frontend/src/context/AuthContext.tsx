@@ -54,13 +54,23 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     fetchUserProfile();
   };
 
-  const logout = () => {
-    Cookies.remove("APP-TOKEN");
-    setIsAuthenticated(false);
-    setUser(null);
+  const logout = async () => {
+    try {
+      const response = await axios.post("/logout");
+
+      if (response.status === 200) {
+        Cookies.remove("APP-TOKEN");
+        setIsAuthenticated(false);
+        setUser(null);
+      }
+    } catch (error: any) {
+      console.error("Error logging out:", error);
+    }
   };
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, user, logout, loading }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated, login, user, logout, loading }}
+    >
       {children}
     </AuthContext.Provider>
   );

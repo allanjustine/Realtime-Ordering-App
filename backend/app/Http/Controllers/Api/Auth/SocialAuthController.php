@@ -43,7 +43,28 @@ class SocialAuthController extends Controller
 
         $token = $user->createToken('API Token')->plainTextToken;
 
+        $user->update([
+            'remember_token'            =>          $token,
+        ]);
 
-        return redirect("http://localhost:5000/success-login/?token={$token}");
+        return redirect("http://localhost:5000/success-login/$token");
+    }
+
+    public function successLogin($token)
+    {
+        $user = User::where('remember_token', $token)->first();
+
+        if (!$user) {
+            return response()->json([
+                'status'            =>          false,
+                'message'           =>          'The token is invalid, or the link has already expired.',
+            ], 403);
+        }
+
+
+        return response()->json([
+            'status'            =>          true,
+            'message'           =>          'Successfully logging in with Google.',
+        ], 200);
     }
 }
