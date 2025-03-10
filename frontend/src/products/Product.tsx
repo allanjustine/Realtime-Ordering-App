@@ -56,7 +56,7 @@ const ProductPage: React.FC<ProductProps> = memo(({ setOnSubmit }) => {
   }, []);
 
   return (
-    <div className="container p-4 mx-auto">
+    <div className="container p-4 mx-auto overflow-x-hidden">
       <div className="flex justify-between">
         <h1 className="mb-4 text-2xl font-bold">Product List</h1>
         <button

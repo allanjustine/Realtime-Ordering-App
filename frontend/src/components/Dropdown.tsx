@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 
-const Dropdown: React.FC = () => {
+const Dropdown: React.FC<any> = ({ isScrolling, isMenuOpen }) => {
   const [isUserDropdownOpen, setUserDropdownOpen] = useState(false);
   const [isNotificationDropdownOpen, setNotificationDropdownOpen] =
     useState(false);
@@ -47,27 +47,39 @@ const Dropdown: React.FC = () => {
           onClick={toggleNotificationDropdown}
           className="flex items-center p-2 rounded-md"
         >
-          <i className="text-white hover:text-gray-200 far fa-bell"></i>
+          <i
+            className={`${
+              isScrolling || isMenuOpen
+                ? "text-white hover:text-gray-200"
+                : "text-orange-800 hover:text-orange-600"
+            } far fa-bell`}
+          ></i>
         </button>
         {isNotificationDropdownOpen && (
           <div className="absolute md:w-[350px] w-[280px] right-0 z-20 mt-2 bg-white rounded-md shadow-lg">
             <div className="absolute right-3 top-[-4px] transform rotate-45 bg-white w-2 h-2"></div>
-            <h4 className="m-2 text-sm font-bold md:m-3 md:text-md">Notifications</h4>
+            <h4 className="m-2 text-sm font-bold md:m-3 md:text-md">
+              Notifications
+            </h4>
             <hr />
             <ul>
               <li className="flex items-center justify-between px-4 py-2 cursor-pointer hover:bg-gray-100">
                 <div className="flex items-start cursor-pointer hover:bg-gray-100">
                   <img
-                    src="https://via.placeholder.com/40"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa9pJwmipEvvvj0PolEHCmudcjEdrRYNRuHA&s"
                     alt="Jane Smith"
                     className="w-8 h-8 mr-4 rounded-full md:w-12 md:h-12"
                   />
                   <div className="flex-1">
-                    <div className="text-sm font-semibold md:text-md">Jane Smith</div>
+                    <div className="text-sm font-semibold md:text-md">
+                      Jane Smith
+                    </div>
                     <div className="text-sm text-gray-700 md:text-md">
                       Your order has been shipped
                     </div>
-                    <div className="text-xs text-gray-500 md:text-sm">3 hours ago</div>
+                    <div className="text-xs text-gray-500 md:text-sm">
+                      3 hours ago
+                    </div>
                   </div>
                 </div>
               </li>
@@ -82,7 +94,7 @@ const Dropdown: React.FC = () => {
           className="flex items-center p-2 text-gray-700 rounded-md"
         >
           <img
-            src="https://via.placeholder.com/40"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa9pJwmipEvvvj0PolEHCmudcjEdrRYNRuHA&s"
             alt="Jane Smith"
             className="w-8 h-8 rounded-full"
           />
@@ -91,7 +103,10 @@ const Dropdown: React.FC = () => {
           <div className="absolute right-2 z-20 w-[200px] mt-2 bg-white rounded-md shadow-lg">
             <div className="absolute right-3 top-[-4px] transform rotate-45 bg-white w-2 h-2"></div>
             <ul>
-              <li className="px-4 py-2 truncate cursor-pointer hover:bg-gray-100" title={user?.email}>
+              <li
+                className="px-4 py-2 truncate cursor-pointer hover:bg-gray-100"
+                title={user?.email}
+              >
                 {user?.email}
               </li>
               <li className="px-4 py-2 cursor-pointer hover:bg-gray-100">

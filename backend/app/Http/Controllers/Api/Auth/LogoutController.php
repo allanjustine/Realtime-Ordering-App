@@ -10,10 +10,13 @@ class LogoutController extends Controller
 {
     public function logout()
     {
-        $user = Auth::user();
+        $user = auth()->user();
 
         $user->update([
             'remember_token'        =>          null,
         ]);
+
+        $user->tokens()->delete();
+
     }
 }

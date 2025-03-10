@@ -18,7 +18,12 @@ interface Cart {
   product: Product;
 }
 
-const CartDropdown: React.FC<any> = ({ onSubmit, setCartData }) => {
+const CartDropdown: React.FC<any> = ({
+  onSubmit,
+  setCartData,
+  isScrolling,
+  isMenuOpen,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [cartItems, setCartItems] = useState<Cart[]>([]);
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
@@ -37,7 +42,7 @@ const CartDropdown: React.FC<any> = ({ onSubmit, setCartData }) => {
         const response = await axios.get("/carts");
         if (response.status === 200) {
           setCartItems(response.data.carts);
-          setCartData(response.data.carts);
+          setCartData(response.data.carts.length);
         }
       } catch (error) {
         console.error(error);
@@ -147,7 +152,11 @@ const CartDropdown: React.FC<any> = ({ onSubmit, setCartData }) => {
   return (
     <div className="relative z-50" ref={cartRef}>
       <button
-        className="flex items-center justify-center px-4 py-2 text-sm text-white rounded-md hover:text-gray-200"
+        className={`${
+          isScrolling || isMenuOpen
+            ? "text-white hover:text-gray-200"
+            : "text-orange-800 hover:text-orange-600"
+        } flex items-center justify-center px-4 py-2 text-sm rounded-md`}
         onClick={toggleDropdown}
       >
         <i className="relative mr-2 fas fa-shopping-cart">
@@ -164,7 +173,7 @@ const CartDropdown: React.FC<any> = ({ onSubmit, setCartData }) => {
           <div className="absolute right-2 top-[-4px] transform rotate-45 bg-white w-2 h-2"></div>
           <h3 className="mt-2 mb-2 ml-3 font-bold text-md">Cart Items</h3>
           <hr />
-          <div className="p-3 max-h-[450px] overflow-x-hidden overflow-y-auto">
+          <div className="p-3 max-h-[400px] overflow-x-hidden overflow-y-auto">
             {cartItems.length === 0 ? (
               <p className="py-10 text-center text-gray-500">
                 <span>
@@ -243,7 +252,7 @@ const CartDropdown: React.FC<any> = ({ onSubmit, setCartData }) => {
                 <div>
                   <button
                     onClick={handleDeleteSelected}
-                    className="w-full py-2 mb-2 text-xs text-white bg-gray-600 rounded hover:bg-gray-700"
+                    className="w-full py-2 mb-2 text-xs text-white bg-red-600 rounded hover:bg-red-700"
                   >
                     Delete Selected
                   </button>

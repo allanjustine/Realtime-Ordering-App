@@ -135,7 +135,7 @@ const ProductList: React.FC<ProductListProps> = memo(
     return (
       <div className="flex flex-col gap-2 lg:flex-row">
         <div className="w-full lg:w-1/4">
-          <div className="sticky p-4 rounded shadow-md top-10">
+          <div className="sticky p-4 border border-gray-200 rounded shadow-md top-10">
             <div className="flex justify-center mb-4 lg:hidden">
               <button
                 onClick={() => setShowFilter(!showFilter)}
@@ -297,7 +297,10 @@ const ProductList: React.FC<ProductListProps> = memo(
             // Mapping through products when available
             filteredProducts.map((product) => (
               <div key={product.id}>
-                <div className="p-3 bg-white rounded-lg shadow-md hover:border" data-aos="zoom-out-down">
+                <div
+                  className="p-3 bg-white rounded-lg shadow-md hover:border"
+                  data-aos="zoom-in"
+                >
                   <div className="relative">
                     {product.image_url && product.image_url.length > 0 ? (
                       <Link to={`/product-detail/${product.id}`}>

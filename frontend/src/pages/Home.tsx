@@ -8,16 +8,16 @@ const Home: React.FC = memo(() => {
   }, []);
 
   return (
-    <div className="bg-gray-50">
+    <div className="-mt-20 bg-gray-50">
       {/* Hero Section */}
-      <header
+      <div
         className="h-screen bg-center bg-cover"
         style={{
           backgroundImage:
             "url('https://img.freepik.com/free-vector/flat-human-hands-hold-smartphone-with-mobile-app-ordering-fast-food-home-take-away-online-service-order-asian-italian-meals-pizza-burger-wok-box-with-noodles-delivery_88138-804.jpg?w=900&t=st=1727424486~exp=1727425086~hmac=d0acefc2ac7e700f2e5194f44eb56eb1d0136c593ddf0a2f4fa4c6deb9750020')",
         }}
       >
-        <div className="flex items-center justify-center h-full bg-black bg-opacity-30">
+        <div className="flex items-center justify-center h-full bg-black bg-opacity-15">
           <div className="px-2 text-center text-white">
             <h1 className="mb-4 text-5xl font-bold">
               Order Your Favorite Food
@@ -33,7 +33,7 @@ const Home: React.FC = memo(() => {
             </Link>
           </div>
         </div>
-      </header>
+      </div>
 
       {/* Featured Items Section */}
       <section className="py-16">

@@ -43,7 +43,11 @@ const ProductDetail: React.FC = () => {
   if (!product)
     return (
       <div className="flex flex-col items-center justify-center h-screen text-center">
-        <img className="w-24 h-24 mb-4" src="https://static.thenounproject.com/png/4532229-512.png" alt="" />
+        <img
+          className="w-24 h-24 mb-4"
+          src="https://static.thenounproject.com/png/4532229-512.png"
+          alt=""
+        />
         <div className="text-lg font-semibold text-gray-700">
           No product found
         </div>
@@ -63,7 +67,7 @@ const ProductDetail: React.FC = () => {
             <img
               src={Storage(mainImage)}
               alt={product.name}
-              className="w-full h-auto mb-4 rounded-lg shadow-md"
+              className="w-full mb-4 rounded-lg shadow-md md:h-[65vh]"
             />
             <div className="flex gap-4 py-4 ml-5 overflow-x-auto">
               {product.image_url.map((url, index) => (
