@@ -99,29 +99,30 @@ const ProductList: React.FC<ProductListProps> = memo(
         }, 1000);
       }
     };
-    const handleFilter = () => {
-      const filteredProducts = products.filter((product) => {
-        const matchesDescription = description
-          ? product.description === description
-          : true;
-        const matchesPrice =
-          (priceRange[0] || priceRange[0] === 0) && priceRange[1]
-            ? product.price >= priceRange[0] && product.price <= priceRange[1]
-            : true;
-        const matchesRating = product.rating >= rating;
-        const matchesSearch = product.name
-          .toLowerCase()
-          .includes(search.toLowerCase());
-
-        return (
-          matchesDescription && matchesPrice && matchesRating && matchesSearch
-        );
-      });
-
-      setFilteredProducts(filteredProducts);
-    };
 
     useEffect(() => {
+      const handleFilter = () => {
+        const filteredProducts = products.filter((product) => {
+          const matchesDescription = description
+            ? product.description === description
+            : true;
+          const matchesPrice =
+            (priceRange[0] || priceRange[0] === 0) && priceRange[1]
+              ? product.price >= priceRange[0] && product.price <= priceRange[1]
+              : true;
+          const matchesRating = product.rating >= rating;
+          const matchesSearch = product.name
+            .toLowerCase()
+            .includes(search.toLowerCase());
+
+          return (
+            matchesDescription && matchesPrice && matchesRating && matchesSearch
+          );
+        });
+
+        setFilteredProducts(filteredProducts);
+      };
+
       handleFilter();
     }, [description, priceRange, rating, search, products]);
 
